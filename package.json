@@ -1,0 +1,13 @@
+{
+  "name": "airbnb-mcp-host",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "mcp:start": "npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt",
+    "dev:http": "npx -y supergateway --stdio \"npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt\" --outputTransport streamableHttp --port 3000",
+    "test:mcp:list": "npx @modelcontextprotocol/inspector --cli npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt --method tools/list",
+    "test:mcp:search-napa": "npx @modelcontextprotocol/inspector --cli npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt --method tools/call --tool-name airbnb_search --tool-arg 'location=Napa, California' --tool-arg 'checkin=2025-09-15' --tool-arg 'checkout=2025-09-18' --tool-arg 'adults=2'",
+    "test": "npm run test:mcp:list && npm run test:mcp:search-napa"
+  },
+  "engines": { "node": ">=18" }
+}
