@@ -1,0 +1,17 @@
+name: MCP CI
+
+on: [push, pull_request]
+
+jobs:
+  test-mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci || npm i
+      - name: List tools
+        run: npm run test:mcp:list
+      - name: Napa search
+        run: npm run test:mcp:search-napa
